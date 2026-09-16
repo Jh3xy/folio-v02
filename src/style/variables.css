@@ -1,0 +1,192 @@
+/*
+ * Design Variables
+ * Current Direction: warm paper, dark ink, restrained gold.
+ * Primary type: self-hosted Urbanist
+ * Utility type: self-hosted IBM Plex Mono
+ */
+
+:root {
+
+  /* ========= TYPOGRAPHY =================== */
+
+  --ff-sans: "Urbanist", sans-serif;
+  --ff-mono: "IBM Plex Mono", monospace;
+
+  /* Font weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Font sizes */
+  --fs-xs: 0.6875rem;   /* 11px */
+  --fs-sm: 0.75rem;     /* 12px */
+  --fs-md: 0.875rem;    /* 14px */
+  --fs-base: 1rem;      /* 16px */
+  --fs-lg: 1.125rem;    /* 18px */
+  --fs-xl: 1.375rem;    /* 22px */
+  --fs-2xl: 1.75rem;    /* 28px */
+  --fs-3xl: 2.25rem;    /* 36px */
+
+
+  /* ================ COLORS ============== */
+
+  /* Source palette */
+  --color-cream: #FEF9F0;
+  --color-gold: #F1D191;
+  --color-ink: #1F1D1A;
+  --color-stone: #908C7B;
+  --color-charcoal: #202423;
+
+  /* Surfaces */
+  --color-surface: var(--color-cream);
+  --color-surface-raised: var(--color-cream);
+  --color-surface-subtle: var(--color-gold);
+  --color-surface-dark: var(--color-charcoal);
+  --color-surface-strong: var(--color-ink);
+
+  /* Text */
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-stone);
+  --color-text-inverse: var(--color-cream);
+  --color-text-on-accent: var(--color-ink);
+
+  /* Borders & dividers */
+  --color-border: color-mix(in srgb, var(--color-stone) 34%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--color-stone) 58%, transparent);
+  --color-divider: color-mix(in srgb, var(--color-stone) 22%, transparent);
+
+  /* Interactive */
+  --color-action: var(--color-ink);
+  --color-action-hover: var(--color-charcoal);
+  --color-action-active: var(--color-stone);
+  --color-action-disabled: color-mix(in srgb, var(--color-stone) 52%, var(--color-cream));
+
+  /* Accent / attention */
+  --color-accent: var(--color-gold);
+  --color-accent-hover: color-mix(in srgb, var(--color-gold) 88%, var(--color-ink));
+  --color-accent-soft: color-mix(in srgb, var(--color-gold) 42%, var(--color-cream));
+
+  /* Semantic states.
+   * Deliberately use the existing palette instead of introducing red/green/blue.
+   * Meaning comes from label, icon, shape and contrast; color stays on-brand.
+   */
+  --color-success: var(--color-charcoal);
+  --color-success-soft: color-mix(in srgb, var(--color-charcoal) 10%, var(--color-cream));
+
+  --color-warning: var(--color-gold);
+  --color-warning-soft: color-mix(in srgb, var(--color-gold) 34%, var(--color-cream));
+
+  --color-error: var(--color-ink);
+  --color-error-soft: color-mix(in srgb, var(--color-ink) 9%, var(--color-cream));
+
+  --color-info: var(--color-stone);
+  --color-info-soft: color-mix(in srgb, var(--color-stone) 12%, var(--color-cream));
+
+  /* Focus / selection */
+  --color-focus: var(--color-stone);
+  --color-selection: color-mix(in srgb, var(--color-gold) 58%, var(--color-cream));
+
+
+  /* ============ OPACITY =============== */
+
+  --opacity-muted: 0.64;
+  --opacity-subtle: 0.48;
+  --opacity-disabled: 0.38;
+  --opacity-ghost: 0.18;
+
+  /* Line heights */
+  --lh-tight: 1.1;
+  --lh-snug: 1.25;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.65;
+
+  /* Letter spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.08em;
+
+  /* =========== SPACING======== */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* ============ RADII ================ */
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 999rem;
+
+  /* ======= BORDERS ===================== */
+
+  --border-thin: 0.0625rem;
+  --border-medium: 0.09375rem;
+
+  /* ======== SHADOWS ======== */
+
+  --shadow-sm: 0 0.125rem 0.5rem color-mix(in srgb, var(--color-ink) 7%, transparent);
+  --shadow-md: 0 0.5rem 1.5rem color-mix(in srgb, var(--color-ink) 10%, transparent);
+
+  /* =========== COMPONENT SIZES ======================= */
+
+  --control-h-sm: 2rem;
+  --control-h-md: 2.5rem;
+  --control-h-lg: 3rem;
+
+  --icon-sm: 0.875rem;
+  --icon-md: 1.125rem;
+  --icon-lg: 1.375rem;
+
+  /* ===== MOTION =========== */
+
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 280ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* =========== LAYOUT ============ */
+
+  --content-max: 90rem;
+  --sidebar-w: 4.5rem;
+  --panel-w: 18rem;
+  --page-gutter: 1.5rem;
+  --section-gap: 1.5rem;
+
+
+  /* The page sits one step back from the cards so cream-on-cream still reads. */
+  --app-bg: color-mix(in srgb, var(--color-stone) 9%, var(--color-cream));
+
+  /* --sidebar-w is the collapsed rail. --panel-w (18rem) is too wide for a
+     2-item nav, so the expanded rail gets its own width. */
+  --nav-w: var(--sidebar-w);
+  --nav-w-expanded: 13.5rem;
+
+
+  /* ======== VIEWPORT BREAKPOINTS ========== */
+
+  /* Top level,  typography and spacing breakpoints */
+  @media (max-width: 48rem) {
+    --page-gutter: 1rem;
+    --section-gap: 1rem;
+    --fs-3xl: 1.875rem;
+    --fs-2xl: 1.5rem;
+  }
+  
+  /* Two only: tablet-down tightens the shell, mobile-down drops the rail to a bar. */
+  @media (max-width: 64rem) {
+    --nav-w-expanded: 12rem;
+  }
+
+}
+
