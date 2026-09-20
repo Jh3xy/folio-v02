@@ -43,7 +43,8 @@ MOBILE.addEventListener('change', (e) => {
 const SECTION_NAV = {
   home: 'home',
   transcripts: 'transcripts',
-  editor: 'transcripts',
+  editor: 'editor',
+  settings: 'settings',
 };
 
 function showSection(id) {
@@ -91,7 +92,7 @@ function toast(message) {
   toastEl.textContent = message;
   toastEl.classList.add('is-visible');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 2200);
+  toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 22200);
 }
 
 // Swap these for real handlers one at a time as the features get built.
@@ -115,3 +116,49 @@ document.addEventListener('click', (e) => {
   if (run) run();
 });
 
+
+// Open Modal Dock
+
+const modalTriggers = document.querySelectorAll("[data-modal-target]");
+let activeModalTrigger = null;
+
+function openModal(modal, trigger) {
+  activeModalTrigger = trigger;
+  modal.hidden = false;
+  modal.querySelector('.dock__close')?.focus();
+}
+
+function closeModal(modal) {
+  modal.hidden = true;
+  activeModalTrigger?.focus();
+  activeModalTrigger = null;
+}
+
+modalTriggers.forEach((trigger) => {
+  const modalId = trigger.dataset.modalTarget;
+  const modal = document.getElementById(modalId);
+
+  if (!modal) return;
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openModal(modal, trigger);
+  });
+
+  modal.querySelectorAll('.dock__close, [data-modal-close]').forEach((closeTrigger) => {
+    closeTrigger.addEventListener('click', () => {
+      closeModal(modal);
+    });
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal(modal);
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+
+  const modal = document.querySelector('.dock:not([hidden])');
+  if (modal) closeModal(modal);
+});

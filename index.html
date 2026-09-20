@@ -13,13 +13,19 @@
       <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
       <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></symbol>
       <symbol id="i-transcripts" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h4"/></symbol>
+      <symbol id="i-editor" viewBox="0 0 24 24"><path d="M5 19h4l10-10-4-4L5 15z"/><path d="m14 6 4 4"/><path d="M4 21h16"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M14.7 3.6 15.4 6a7.8 7.8 0 0 1 1.5.9l2.4-.6 1.8 3.1-1.8 1.8a8.6 8.6 0 0 1 0 1.7l1.8 1.8-1.8 3.1-2.4-.6a7.8 7.8 0 0 1-1.5.9l-.7 2.4h-3.5l-.7-2.4a7.8 7.8 0 0 1-1.5-.9l-2.4.6-1.8-3.1 1.8-1.8a8.6 8.6 0 0 1 0-1.7L4.8 9.4l1.8-3.1 2.4.6a7.8 7.8 0 0 1 1.5-.9l.7-2.4z"/><circle cx="12" cy="12" r="3"/></symbol>
       <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
       <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol>
       <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
       <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 4v10"/><path d="m8 10 4 4 4-4"/><path d="M5 18h14"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="10" height="12" rx="1.5"/><path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="1.5"/><path d="m5 8 7 5 7-5"/></symbol>
       <symbol id="i-save" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z"/></symbol>
       <symbol id="i-more" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/></symbol>
       <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m8 9 4-4 4 4"/><path d="M5 19h14"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
       <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></symbol>
       <symbol id="i-prev" viewBox="0 0 24 24"><path d="M18 6v12L9 12z"/><path d="M6 6v12"/></symbol>
@@ -57,12 +63,24 @@
               <span class="nav__label">Transcripts</span>
             </button>
           </li>
+          <li>
+            <button type="button" class="nav__item" data-section="editor">
+              <svg class="icon" aria-hidden="true"><use href="#i-editor" /></svg>
+              <span class="nav__label">Editor</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav__item" data-section="settings">
+              <svg class="icon" aria-hidden="true"><use href="#i-settings" /></svg>
+              <span class="nav__label">Settings</span>
+            </button>
+          </li>
         </ul>
 
         <div class="nav__foot">
           <hr class="nav__divider" />
 
-          <button type="button" class="btn btn--accent nav__cta" data-action="new">
+          <button type="button" class="btn btn--accent nav__cta" data-action="new" data-modal-target="dock">
             <svg class="icon" aria-hidden="true"><use href="#i-plus" /></svg>
             <span class="nav__label">New</span>
           </button>
@@ -102,7 +120,7 @@
                     <svg class="icon" aria-hidden="true"><use href="#i-open" /></svg>
                     <span>Open</span>
                   </button>
-                  <button type="button" class="btn btn--quiet" data-action="export">
+                  <button type="button" class="btn btn--quiet" data-action="export" data-modal-target="export">
                     <svg class="icon" aria-hidden="true"><use href="#i-export" /></svg>
                     <span>Export</span>
                   </button>
@@ -160,9 +178,9 @@
                         <span class="rec__meta mono">48:12 · Today</span>
                       </span>
                     </div>
-                    <div>
-                      <!-- Detail Kebab goes here -->
-                    </div>
+                    <span class="rec__more" aria-hidden="true">
+                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                    </span>
                   </button>
                 </li>
                 <li>
@@ -176,9 +194,9 @@
                         <span class="rec__meta mono">1:02:40 · Wed</span>
                       </span>
                     </div>
-                    <div>
-                      <!-- Detail Kebab goes here -->
-                    </div>
+                    <span class="rec__more" aria-hidden="true">
+                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                    </span>
                   </button>
                 </li>
                 <li>
@@ -192,9 +210,9 @@
                         <span class="rec__meta mono">27:05 · 9 Sep</span>
                       </span>
                     </div>
-                    <div>
-                      <!-- Detail Kebab goes here -->
-                    </div>
+                    <span class="rec__more" aria-hidden="true">
+                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                    </span>
                   </button>
                 </li>
                 <li>
@@ -208,12 +226,15 @@
                         <span class="rec__meta mono">18:33 · 6 Sep</span>
                       </span>
                     </div>
+                    <span class="rec__more" aria-hidden="true">
+                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                    </span>
                   </button>
                 </li>
               </ul>
 
               <footer class="card__foot card__foot--stack">
-                <button type="button" class="btn btn--accent btn--block" data-action="upload">
+                <button type="button" class="btn btn--accent btn--block" data-action="upload" data-modal-target="dock">
                   <svg class="icon" aria-hidden="true"><use href="#i-upload" /></svg>
                   <span>Upload audio</span>
                 </button>
@@ -332,11 +353,115 @@
             </div>
           </article>
         </section>
+
+
+        <!-- ============ SETTINGS ============ -->
+        <section id="settings" class="page" aria-label="Editor" hidden>
+          <h1 class="page__title">Settings</h1>
+          <article class="card card--full">
+            <div class="empty">
+              <span class="empty__mark" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+              </span>
+              <p class="empty__title">Transcript and Account prferences</p>
+              <p class="empty__body">Account toggles, and saved prefrences goo here.</p>
+            </div>
+          </article>
+        </section>
       </main>
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    
+    <div id="dock" class="dock" role="dialog" aria-modal="true" aria-labelledby="dock-title" hidden>
+      <article class="dock__modal">
+        <header class="dock__head">
+          <h2 id="dock-title" class="">Upload audio</h2>
+          <button type="button" class="icon-btn icon-btn--sm dock__close" aria-label="Cancel upload">
+            <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </header>
 
+        <section class="dock__body">
+          <input class="sr-only" type="file" id="audio-upload" name="audio-upload" accept="audio/*" />
+          <label class="dock__dropzone" for="audio-upload">
+            <img src="/jpegs/folder-open.svg" alt="Open file" width="60px" height="60px">
+            <span class="dock__copy">
+              <span class="dock__title">Pick audio file</span>
+              <span class="dock__meta">Min 2MB · Max 500MB</span>
+            </span>
+          </label>
+        </section>
+
+        <footer class="dock__foot">
+          <button type="button" class="btn btn--solid btn--block">Upload</button>
+        </footer>
+      </article>
+    </div>
+
+    <div id="export" class="dock" role="dialog" aria-modal="true" aria-labelledby="export-title" hidden>
+      <article class="dock__modal dock__modal--export">
+        <header class="dock__head">
+          <h2 id="export-title">Export File</h2>
+          <button type="button" class="icon-btn icon-btn--sm dock__close" aria-label="Cancel export">
+            <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </header>
+
+        <section class="dock__body export-modal">
+          <p class="export-modal__label">Select format</p>
+
+          <div class="export-modal__options" role="radiogroup" aria-label="Select export format">
+            <label class="export-option">
+              <input class="sr-only" type="radio" name="export-format" value="pdf" checked />
+              <span class="export-option__badge">New</span>
+              <span class="export-option__icon" aria-hidden="true">
+                <svg class="icon"><use href="#i-copy" /></svg>
+              </span>
+              <span class="export-option__copy">
+                <span class="export-option__title">Export to PDF</span>
+                <span class="export-option__meta">Download as a stylized document</span>
+              </span>
+              <span class="export-option__radio" aria-hidden="true"></span>
+            </label>
+
+            <label class="export-option">
+              <input class="sr-only" type="radio" name="export-format" value="docx" />
+              <span class="export-option__badge">New</span>
+              <span class="export-option__icon" aria-hidden="true">
+                <svg class="icon"><use href="#i-file" /></svg>
+              </span>
+              <span class="export-option__copy">
+                <span class="export-option__title">Export as DOCX</span>
+                <span class="export-option__meta">Download as a doc file from your browser</span>
+              </span>
+              <span class="export-option__radio" aria-hidden="true"></span>
+            </label>
+
+            <label class="export-option is-disabled">
+              <input class="sr-only" type="radio" name="export-format" value="gmail" disabled />
+              <span class="export-option__badge export-option__badge--muted">Soon</span>
+              <span class="export-option__icon" aria-hidden="true">
+                <svg class="icon"><use href="#i-mail" /></svg>
+              </span>
+              <span class="export-option__copy">
+                <span class="export-option__title">Send to Gmail</span>
+                <span class="export-option__meta">Directly email to an account</span>
+              </span>
+              <span class="export-option__radio" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+
+        <footer class="dock__foot export-modal__foot">
+          <button type="button" class="btn btn--solid btn--block">
+            <svg class="icon" aria-hidden="true"><use href="#i-export" /></svg>
+            <span>Download</span>
+          </button>
+          <button type="button" class="btn btn--block btn--ghost export-modal__cancel" data-modal-close>Cancel</button>
+        </footer>
+      </article>
+    </div>
     
   </body>
 </html>
