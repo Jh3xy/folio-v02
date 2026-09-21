@@ -245,8 +245,32 @@ body:has(.dock:not([hidden])) #main {
 .card--recent   { grid-column: span 7; }
 .card--queue    { grid-column: span 10; }
 .card--record   { grid-column: span 7; }
-.card--listen   { grid-column: span 7; }
+.card--summary   { grid-column: span 7; }
 .card--full     { grid-column: span 24; }
+
+.card--summary .summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.summary__source {
+  color: var(--color-stone, #908C7B);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.summary__teaser {
+  color: var(--color-ink, #1F1D1A);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  display: -webkit-box;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 /* Two columns once the main area — not the window — gets tight. */
 @container main (max-width: 44rem) {
@@ -254,14 +278,14 @@ body:has(.dock:not([hidden])) #main {
   .card--recent,
   .card--queue,
   .card--record,
-  .card--listen { grid-column: span 12; }
+  .card--summary { grid-column: span 12; }
 }
 
 @container main (max-width: 38rem) {
   .card--recent,
   .card--queue,
   .card--record,
-  .card--listen { grid-column: span 24; }
+  .card--summary { grid-column: span 24; }
 }
 
 /* ======== CARD ========= */
@@ -289,7 +313,7 @@ body:has(.dock:not([hidden])) #main {
 
 .card--queue,
 .card--record,
-.card--listen { min-height: 13rem; }
+.card--summary { min-height: 13rem; }
 
 .card__head {
   display: flex;

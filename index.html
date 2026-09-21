@@ -288,37 +288,25 @@
               </footer>
             </article>
 
-            <!-- Listen back -->
-            <article class="card card--listen">
+            <!-- Latest summary (replaces Listen back) -->
+            <article class="card card--summary">
               <header class="card__head card__head--tight">
-                <h2 class="card__title card__title--sm">Listen back</h2>
-                <button type="button" class="icon-btn icon-btn--sm" data-action="more" aria-label="Playback options">
+                <h2 class="card__title card__title--sm">Latest summary</h2>
+                <button type="button" class="icon-btn icon-btn--sm" data-action="more" aria-label="Summary options">
                   <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
                 </button>
               </header>
 
-              <div class="player-wrap">
-                <div class="player">
-                  <p class="player__track">Sunday Service — Morning Sermon</p>
-                  <div class="player__bar" aria-hidden="true"><span style="--progress: 25%"></span></div>
-                  <p class="mono player__time"><span>12:04</span><span>48:12</span></p>
-                </div>
+              <div class="summary">
+                <p class="summary__source mono">Sunday Service — Morning Sermon</p>
+                <p class="summary__teaser">
+                  The sermon explores the importance of slowing down while reading scripture and considering the context behind familiar passages.
+                </p>
               </div>
 
-              <footer class="card__foot card__foot--center">
-                <button type="button" class="icon-btn icon-btn--sm" aria-label="Previous recording">
-                  <svg class="icon" aria-hidden="true"><use href="#i-prev" /></svg>
-                </button>
-                <button type="button" class="icon-btn icon-btn--sm" aria-label="Back 15 seconds">
-                  <svg class="icon" aria-hidden="true"><use href="#i-back" /></svg>
-                </button>
-                <button type="button" class="icon-btn icon-btn--lead" data-action="play" aria-label="Play">
-                  <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
-                </button>
-                <button type="button" class="icon-btn icon-btn--sm" aria-label="Forward 15 seconds">
-                  <svg class="icon" aria-hidden="true"><use href="#i-fwd" /></svg>
-                </button>
-                <button type="button" class="icon-btn icon-btn--sm" aria-label="Next recording">
+              <footer class="card__foot">
+                <button type="button" class="btn btn--ghost btn--sm" data-action="view-summary">
+                  <span>View summary</span>
                   <svg class="icon" aria-hidden="true"><use href="#i-next" /></svg>
                 </button>
               </footer>
@@ -385,7 +373,7 @@
         <section class="dock__body">
           <input class="sr-only" type="file" id="audio-upload" name="audio-upload" accept="audio/*" />
           <label class="dock__dropzone" for="audio-upload">
-            <img src="/jpegs/folder-open.svg" alt="Open file" width="60px" height="60px">
+            <img src="/jpegs/folder-open.svg" alt="Open file" width="80px" height="80px">
             <span class="dock__copy">
               <span class="dock__title">Pick audio file</span>
               <span class="dock__meta">Min 2MB · Max 500MB</span>

@@ -150,10 +150,6 @@ modalTriggers.forEach((trigger) => {
       closeModal(modal);
     });
   });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal(modal);
-  });
 });
 
 document.addEventListener('keydown', (e) => {
