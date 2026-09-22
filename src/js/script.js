@@ -1,86 +1,165 @@
-
 /* FOLIO — main js module */
 
-import '../style/font.css';
-import '../style/variables.css';
-import '../style/utils.css';
-import '../style/style.css';
+import "../style/font.css";
+import "../style/variables.css";
+import "../style/utils.css";
+import "../style/style.css";
 
 console.log("[VITE]: Status - Running");
 
-const app = document.getElementById('app');
-const nav = document.getElementById('nav');
-const toggle = document.getElementById('nav-toggle');
-const toastEl = document.getElementById('toast');
+const app = document.getElementById("app");
+const nav = document.getElementById("nav");
+const toggle = document.getElementById("nav-toggle");
+const toastEl = document.getElementById("toast");
 
-const MOBILE = window.matchMedia('(max-width: 48rem)');
+const MOBILE = window.matchMedia("(max-width: 48rem)");
 
 /* ---------- nav width ---------- */
 
 function setNavOpen(open) {
-  app.classList.toggle('is-nav-open', open);
-  toggle.setAttribute('aria-expanded', String(open));
-  toggle.setAttribute('aria-label', open ? 'Collapse navigation' : 'Expand navigation');
+  app.classList.toggle("is-nav-open", open);
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.setAttribute(
+    "aria-label",
+    open ? "Collapse navigation" : "Expand navigation",
+  );
 }
 
-toggle.addEventListener('click', () => {
-  setNavOpen(!app.classList.contains('is-nav-open'));
+toggle.addEventListener("click", () => {
+  setNavOpen(!app.classList.contains("is-nav-open"));
 });
 
 // Below the mobile breakpoint the rail becomes a bottom bar, so the open
 // state is meaningless — drop it rather than leave a stale class behind.
-MOBILE.addEventListener('change', (e) => {
+MOBILE.addEventListener("change", (e) => {
   if (e.matches) setNavOpen(false);
 });
 
-/* ---------- Section to Nav swapping & mapping---------- */
+/* ---------- Routing ---------- */
 
+const ROUTES = [
+  { name: "home", pattern: [] },
+  { name: "recordings", pattern: ["recordings"] },
+  { name: "editor", pattern: ["editor", ":id"] },
+  { name: "editor", pattern: ["editor"] },
+  { name: "settings", pattern: ["settings"] },
+];
+
+function parseRoute(pathname) {
+  const segments = pathname.split("/").filter(Boolean); // '/editor/42' -> ['editor', '42']
+
+  for (const route of ROUTES) {
+    if (route.pattern.length !== segments.length) continue;
+
+    const params = {};
+    const isMatch = route.pattern.every((part, i) => {
+      if (part.startsWith(":")) {
+        params[part.slice(1)] = segments[i];
+        return true;
+      }
+      return part === segments[i];
+    });
+
+    if (isMatch) return { name: route.name, params };
+  }
+
+  return { name: "notfound", params: {} }; // unknown path -> not found
+}
 /**
- * ?INFO: Sections without a nav item of their own borrow one
- * Editor is reached from a transcript, so it lights up the Transcript nav btn
- * might change and adjust that if i seperate editor for transcripts/ recordings
+ * The single render path. In-app clicks, popstate, and the initial page
+ * load all end up calling this with the same shape of object — no branching
+ * between "user clicked" vs "user hit refresh".
+ * @param {*} route
+ * @returns
  */
-const SECTION_NAV = {
-  home: 'home',
-  transcripts: 'transcripts',
-  editor: 'editor',
-  settings: 'settings',
-};
 
-function showSection(id) {
-  const navId = SECTION_NAV[id] ?? id;
-  const target = document.getElementById(id);
+function renderRoute(route) {
+  const target = document.getElementById(route.name);
   if (!target) return;
 
-  document.querySelectorAll('#main .page').forEach((page) => {
+  document.querySelectorAll("#main .page").forEach((page) => {
     const isTarget = page === target;
-    page.classList.toggle('is-visible', isTarget);
+    page.classList.toggle("is-visible", isTarget);
     page.hidden = !isTarget;
   });
 
+  // route.name doubles as the nav's data-section value — editor keeps its
+  // own identity/nav highlight rather than borrowing Recordings'.
   document.querySelectorAll(".nav__item").forEach((item) => {
-    const isTarget = item.dataset.section === navId;
+    const isTarget = item.dataset.section === route.name;
     item.classList.toggle("is-active", isTarget);
     if (isTarget) item.setAttribute("aria-current", "page");
     else item.removeAttribute("aria-current");
   });
 
-  document.getElementById('main').scrollTop = 0;
+  document.getElementById("main").scrollTop = 0;
+
+  if (route.name === "editor") loadEditor(route.params.id ?? null);
 }
 
-nav.addEventListener('click', (e) => {
-  const item = e.target.closest('.nav__item');
-  if (!item) return;
-  // e.preventDefault(); - used buttons which dont navigate, instead of anchor tags.
-  showSection(item.dataset.section);
-  if (MOBILE.matches) setNavOpen(false);
+// The only place that touches history. Everything else calls this or
+// renderRoute() directly (popstate, initial load — see bottom of file).
+function navigate(path, { replace = false } = {}) {
+  if (replace) history.replaceState({}, "", path);
+  else history.pushState({}, "", path);
+  renderRoute(parseRoute(path));
+}
+
+window.addEventListener("popstate", () => {
+  renderRoute(parseRoute(location.pathname)); // no pushState — URL already moved
 });
+
+/* ---------- Editor loading ---------- */
+
+function getLastOpenedId() {
+  return null; // TODO: read from localStorage once something writes to it
+}
+
+// Stub — swap this for a real Supabase fetch once DB wiring lands.
+// Resolves to the transcript row, or null for "not found".
+function loadTranscript(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(null), 600);
+  });
+}
+
+let editorRequestId = 0; // guards a slow fetch from overwriting a newer one
+
+async function loadEditor(id) {
+  const editorEl = document.getElementById("editor");
+  const resolvedId = id ?? getLastOpenedId();
+
+  editorEl.classList.remove("is-loading", "is-empty", "is-not-found");
+
+  if (!resolvedId) {
+    editorEl.classList.add("is-empty");
+    return;
+  }
+
+  const requestId = ++editorRequestId;
+  editorEl.classList.add("is-loading");
+
+  const data = await loadTranscript(resolvedId);
+  if (requestId !== editorRequestId) return; // a newer navigation beat this one back
+
+  editorEl.classList.remove("is-loading");
+
+  if (!data) {
+    editorEl.classList.add("is-not-found");
+    return;
+  }
+
+  // TODO: render(data) once there's real content to render
+}
 
 /* ---------- toggles ---------- */
 
-document.querySelectorAll('.switch').forEach((sw) => {
-  sw.addEventListener('click', () => {
-    sw.setAttribute('aria-checked', sw.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+document.querySelectorAll(".switch").forEach((sw) => {
+  sw.addEventListener("click", () => {
+    sw.setAttribute(
+      "aria-checked",
+      sw.getAttribute("aria-checked") === "true" ? "false" : "true",
+    );
   });
 });
 
@@ -90,32 +169,42 @@ let toastTimer;
 
 function toast(message) {
   toastEl.textContent = message;
-  toastEl.classList.add('is-visible');
+  toastEl.classList.add("is-visible");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 22200);
+  toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 22200);
 }
 
 // Swap these for real handlers one at a time as the features get built.
 const actions = {
-  new: () => toast('New recording — upload flow goes here'),
-  upload: () => toast('Upload audio — file picker goes here'),
-  record: () => toast('Start recording — capture goes here'),
-  open: () => showSection('editor'),
-  export: () => toast('Export — format options go here'),
-  save: () => toast('Saved'),
-  play: () => toast('Playback — audio engine goes here'),
-  more: () => toast('More actions'),
-  history: () => toast('Queue history'),
-  'view-all': () => showSection('transcripts'),
+  new: () => toast("New recording — upload flow goes here"),
+  upload: () => toast("Upload audio — file picker goes here"),
+  record: () => toast("Start recording — capture goes here"),
+  export: () => toast("Export — format options go here"),
+  save: () => toast("Saved"),
+  play: () => toast("Playback — audio engine goes here"),
+  more: () => toast("More actions"),
 };
 
-document.addEventListener('click', (e) => {
-  const el = e.target.closest('[data-action]');
+document.addEventListener("click", (e) => {
+  const el = e.target.closest("[data-action]");
   if (!el) return;
   const run = actions[el.dataset.action];
   if (run) run();
 });
 
+// Any internal nav link — nav items, Open, View all, History — carries
+// data-route. Modifier/middle clicks are left alone so ctrl/cmd+click,
+// shift+click and middle-click still open a new tab the normal way.
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a[data-route]");
+  if (!link) return;
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0)
+    return;
+
+  e.preventDefault();
+  navigate(link.getAttribute("href"));
+  if (MOBILE.matches) setNavOpen(false);
+});
 
 // Open Modal Dock
 
@@ -125,7 +214,7 @@ let activeModalTrigger = null;
 function openModal(modal, trigger) {
   activeModalTrigger = trigger;
   modal.hidden = false;
-  modal.querySelector('.dock__close')?.focus();
+  modal.querySelector(".dock__close")?.focus();
 }
 
 function closeModal(modal) {
@@ -145,16 +234,21 @@ modalTriggers.forEach((trigger) => {
     openModal(modal, trigger);
   });
 
-  modal.querySelectorAll('.dock__close, [data-modal-close]').forEach((closeTrigger) => {
-    closeTrigger.addEventListener('click', () => {
-      closeModal(modal);
+  modal
+    .querySelectorAll(".dock__close, [data-modal-close]")
+    .forEach((closeTrigger) => {
+      closeTrigger.addEventListener("click", () => {
+        closeModal(modal);
+      });
     });
-  });
 });
 
-document.addEventListener('keydown', (e) => {
-  if (e.key !== 'Escape') return;
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
 
-  const modal = document.querySelector('.dock:not([hidden])');
+  const modal = document.querySelector(".dock:not([hidden])");
   if (modal) closeModal(modal);
 });
+
+/* ---------- Initial route ---------- */
+renderRoute(parseRoute(location.pathname));

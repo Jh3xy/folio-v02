@@ -10,28 +10,100 @@
   <body>
     <!-- Icon sprite: define once, reference with <use>. Keeps markup readable. -->
     <svg class="sprite" aria-hidden="true" focusable="false">
-      <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
-      <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></symbol>
-      <symbol id="i-transcripts" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h4"/></symbol>
-      <symbol id="i-editor" viewBox="0 0 24 24"><path d="M5 19h4l10-10-4-4L5 15z"/><path d="m14 6 4 4"/><path d="M4 21h16"/></symbol>
-      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M14.7 3.6 15.4 6a7.8 7.8 0 0 1 1.5.9l2.4-.6 1.8 3.1-1.8 1.8a8.6 8.6 0 0 1 0 1.7l1.8 1.8-1.8 3.1-2.4-.6a7.8 7.8 0 0 1-1.5.9l-.7 2.4h-3.5l-.7-2.4a7.8 7.8 0 0 1-1.5-.9l-2.4.6-1.8-3.1 1.8-1.8a8.6 8.6 0 0 1 0-1.7L4.8 9.4l1.8-3.1 2.4.6a7.8 7.8 0 0 1 1.5-.9l.7-2.4z"/><circle cx="12" cy="12" r="3"/></symbol>
-      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
-      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol>
-      <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
-      <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 4v10"/><path d="m8 10 4 4 4-4"/><path d="M5 18h14"/></symbol>
-      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="10" height="12" rx="1.5"/><path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
-      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></symbol>
-      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="1.5"/><path d="m5 8 7 5 7-5"/></symbol>
-      <symbol id="i-save" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z"/></symbol>
-      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/></symbol>
-      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m8 9 4-4 4 4"/><path d="M5 19h14"/></symbol>
-      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
-      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></symbol>
-      <symbol id="i-prev" viewBox="0 0 24 24"><path d="M18 6v12L9 12z"/><path d="M6 6v12"/></symbol>
-      <symbol id="i-back" viewBox="0 0 24 24"><path d="M13 6v12L4 12z"/><path d="M20 6v12l-7-6z"/></symbol>
-      <symbol id="i-fwd" viewBox="0 0 24 24"><path d="M11 6v12l9-6z"/><path d="M4 6v12l7-6z"/></symbol>
-      <symbol id="i-next" viewBox="0 0 24 24"><path d="M6 6v12l9-6z"/><path d="M18 6v12"/></symbol>
+      <symbol id="i-panel" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M9 4v16" />
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path
+          d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"
+        />
+      </symbol>
+      <symbol id="i-transcripts" viewBox="0 0 24 24">
+        <path d="M6 3h8l4 4v14H6z" />
+        <path d="M14 3v4h4" />
+        <path d="M9 12h6M9 16h4" />
+      </symbol>
+      <symbol id="i-editor" viewBox="0 0 24 24">
+        <path d="M5 19h4l10-10-4-4L5 15z" />
+        <path d="m14 6 4 4" />
+        <path d="M4 21h16" />
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <path
+          d="M14.7 3.6 15.4 6a7.8 7.8 0 0 1 1.5.9l2.4-.6 1.8 3.1-1.8 1.8a8.6 8.6 0 0 1 0 1.7l1.8 1.8-1.8 3.1-2.4-.6a7.8 7.8 0 0 1-1.5.9l-.7 2.4h-3.5l-.7-2.4a7.8 7.8 0 0 1-1.5-.9l-2.4.6-1.8-3.1 1.8-1.8a8.6 8.6 0 0 1 0-1.7L4.8 9.4l1.8-3.1 2.4.6a7.8 7.8 0 0 1 1.5-.9l.7-2.4z"
+        />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="M8 5.5v13l10-6.5z" />
+      </symbol>
+      <symbol id="i-open" viewBox="0 0 24 24">
+        <path d="M14 4h6v6" />
+        <path d="M20 4 11 13" />
+        <path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+      </symbol>
+      <symbol id="i-export" viewBox="0 0 24 24">
+        <path d="M12 4v10" />
+        <path d="m8 10 4 4 4-4" />
+        <path d="M5 18h14" />
+      </symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24">
+        <rect x="8" y="8" width="10" height="12" rx="1.5" />
+        <path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24">
+        <path d="M7 3h7l4 4v14H7z" />
+        <path d="M14 3v4h4" />
+        <path d="M10 12h5M10 16h5" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="4" y="6" width="16" height="12" rx="1.5" />
+        <path d="m5 8 7 5 7-5" />
+      </symbol>
+      <symbol id="i-save" viewBox="0 0 24 24">
+        <path d="M7 4h10v16l-5-4-5 4z" />
+      </symbol>
+      <symbol id="i-more" viewBox="0 0 24 24">
+        <circle cx="6" cy="12" r="1.3" />
+        <circle cx="12" cy="12" r="1.3" />
+        <circle cx="18" cy="12" r="1.3" />
+      </symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24">
+        <path d="M12 16V5" />
+        <path d="m8 9 4-4 4 4" />
+        <path d="M5 19h14" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12.5 4.5 4.5L19 7" />
+      </symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24">
+        <rect x="9" y="3" width="6" height="11" rx="3" />
+        <path d="M5 11a7 7 0 0 0 14 0" />
+        <path d="M12 18v3" />
+      </symbol>
+      <symbol id="i-prev" viewBox="0 0 24 24">
+        <path d="M18 6v12L9 12z" />
+        <path d="M6 6v12" />
+      </symbol>
+      <symbol id="i-back" viewBox="0 0 24 24">
+        <path d="M13 6v12L4 12z" />
+        <path d="M20 6v12l-7-6z" />
+      </symbol>
+      <symbol id="i-fwd" viewBox="0 0 24 24">
+        <path d="M11 6v12l9-6z" />
+        <path d="M4 6v12l7-6z" />
+      </symbol>
+      <symbol id="i-next" viewBox="0 0 24 24">
+        <path d="M6 6v12l9-6z" />
+        <path d="M18 6v12" />
+      </symbol>
     </svg>
 
     <div id="app">
@@ -52,35 +124,40 @@
 
         <ul class="nav__list" role="list">
           <li>
-            <button type="button" class="nav__item is-active" data-section="home" aria-current="page">
+            <a href="/" class="nav__item is-active" data-route data-section="home" aria-current="page">
               <svg class="icon" aria-hidden="true"><use href="#i-home" /></svg>
               <span class="nav__label">Home</span>
-            </button>
+            </a>
           </li>
           <li>
-            <button type="button" class="nav__item" data-section="transcripts">
-              <svg class="icon" aria-hidden="true"><use href="#i-transcripts" /></svg>
-              <span class="nav__label">Transcripts</span>
-            </button>
+            <a href="/recordings" class="nav__item" data-route data-section="recordings">
+              <svg class="icon" aria-hidden="true"><use href="#i-mic" /></svg>
+              <span class="nav__label">Recordings</span>
+            </a>
           </li>
           <li>
-            <button type="button" class="nav__item" data-section="editor">
+            <a href="/editor" class="nav__item" data-route data-section="editor">
               <svg class="icon" aria-hidden="true"><use href="#i-editor" /></svg>
               <span class="nav__label">Editor</span>
-            </button>
+            </a>
           </li>
           <li>
-            <button type="button" class="nav__item" data-section="settings">
+            <a href="/settings" class="nav__item" data-route data-section="settings">
               <svg class="icon" aria-hidden="true"><use href="#i-settings" /></svg>
               <span class="nav__label">Settings</span>
-            </button>
+            </a>
           </li>
         </ul>
 
         <div class="nav__foot">
           <hr class="nav__divider" />
 
-          <button type="button" class="btn btn--accent nav__cta" data-action="new" data-modal-target="dock">
+          <button
+            type="button"
+            class="btn btn--accent nav__cta"
+            data-action="new"
+            data-modal-target="dock"
+          >
             <svg class="icon" aria-hidden="true"><use href="#i-plus" /></svg>
             <span class="nav__label">New</span>
           </button>
@@ -116,43 +193,69 @@
                 </div>
 
                 <div class="card__controls">
-                  <button type="button" class="btn btn--quiet" data-action="open">
+                  <a href="/editor/1" class="btn btn--quiet" data-route data-id="1">
                     <svg class="icon" aria-hidden="true"><use href="#i-open" /></svg>
                     <span>Open</span>
-                  </button>
-                  <button type="button" class="btn btn--quiet" data-action="export" data-modal-target="export">
+                  </a>
+                  <button type="button" class="btn btn--quiet" data-action="export" data-modal-target="export" data-id="1">
                     <svg class="icon" aria-hidden="true"><use href="#i-export" /></svg>
                     <span>Export</span>
                   </button>
-                  <button type="button" class="icon-btn" data-action="save" aria-label="Save transcript">
-                    <svg class="icon" aria-hidden="true"><use href="#i-save" /></svg>
+                  <button
+                    type="button"
+                    class="icon-btn"
+                    data-action="save"
+                    aria-label="Save transcript"
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-save" />
+                    </svg>
                   </button>
-                  <button type="button" class="icon-btn" data-action="more" aria-label="More actions">
-                    <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                  <button
+                    type="button"
+                    class="icon-btn"
+                    data-action="more"
+                    aria-label="More actions"
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-more" />
+                    </svg>
                   </button>
                 </div>
               </header>
 
               <div class="transcript">
                 <p class="transcript__line">
-                  <span class="transcript__who">Pastor Eno<span class="transcript__time">11:58</span></span>
-                  Turn with me to the second chapter, and read it slowly. The text is doing
-                  something we usually rush past.
+                  <span class="transcript__who"
+                    >Pastor Eno<span class="transcript__time">11:58</span></span
+                  >
+                  Turn with me to the second chapter, and read it slowly. The
+                  text is doing something we usually rush past.
                 </p>
                 <p class="transcript__line">
-                  <span class="transcript__who">Speaker 2<span class="transcript__time">12:26</span></span>
+                  <span class="transcript__who"
+                    >Speaker 2<span class="transcript__time">12:26</span></span
+                  >
                   Should we start from verse one or the middle of the passage?
                 </p>
                 <p class="transcript__line">
-                  <span class="transcript__who">Pastor Eno<span class="transcript__time">12:31</span></span>
-                  From verse one. And keep the question in mind while we read — it comes back
-                  at the end of the service.
+                  <span class="transcript__who"
+                    >Pastor Eno<span class="transcript__time">12:31</span></span
+                  >
+                  From verse one. And keep the question in mind while we read —
+                  it comes back at the end of the service.
                 </p>
               </div>
 
               <footer class="card__foot">
-                <button type="button" class="btn btn--solid" data-action="resume">
-                  <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+                <button
+                  type="button"
+                  class="btn btn--solid"
+                  data-action="resume"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-play" />
+                  </svg>
                   <span>Resume at 12:04</span>
                 </button>
                 <span class="mono card__timecode">12:04 / 48:12</span>
@@ -163,15 +266,17 @@
             <article class="card card--recent">
               <header class="card__head card__head--tight">
                 <h2 class="card__title card__title--sm">Recent recordings</h2>
-                <button type="button" class="btn btn--ghost btn--sm" data-action="view-all">All</button>
+                <a href="/recordings" class="btn btn--ghost btn--sm" data-action="view-all" data-route>All</a>
               </header>
 
               <ul class="rec" role="list">
                 <li>
-                  <button type="button" class="rec__item is-current" data-action="open">
+                  <a href="/editor/1" class="rec__item is-current" data-route data-id="1" data-action="open">
                     <div class="flex items-center gap-3">
                       <span class="rec__badge" aria-hidden="true">
-                        <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-play" />
+                        </svg>
                       </span>
                       <span class="rec__text">
                         <span class="rec__name">Sunday Service</span>
@@ -179,15 +284,19 @@
                       </span>
                     </div>
                     <span class="rec__more" aria-hidden="true">
-                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-more" />
+                      </svg>
                     </span>
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button type="button" class="rec__item" data-action="open">
+                  <a href="/editor/2" class="rec__item" data-route data-id="2" data-action="open">
                     <div class="flex items-center gap-3">
                       <span class="rec__badge" aria-hidden="true">
-                        <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-play" />
+                        </svg>
                       </span>
                       <span class="rec__text">
                         <span class="rec__name">Bible Study</span>
@@ -195,15 +304,19 @@
                       </span>
                     </div>
                     <span class="rec__more" aria-hidden="true">
-                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-more" />
+                      </svg>
                     </span>
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button type="button" class="rec__item" data-action="open">
+                  <a href="/editor/3" class="rec__item" data-route data-id="2" data-action="open">
                     <div class="flex items-center gap-3">
                       <span class="rec__badge" aria-hidden="true">
-                        <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-play" />
+                        </svg>
                       </span>
                       <span class="rec__text">
                         <span class="rec__name">Youth Meeting</span>
@@ -211,15 +324,20 @@
                       </span>
                     </div>
                     <span class="rec__more" aria-hidden="true">
-                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-more" />
+                      </svg>
                     </span>
-                  </button>
+                  </a>
                 </li>
                 <li>
                   <button type="button" class="rec__item" data-action="open">
+                  <a href="/editor/4" class="rec__item" data-route data-id="2">
                     <div class="flex items-center gap-3">
                       <span class="rec__badge" aria-hidden="true">
-                        <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-play" />
+                        </svg>
                       </span>
                       <span class="rec__text">
                         <span class="rec__name">Planning Call</span>
@@ -227,15 +345,24 @@
                       </span>
                     </div>
                     <span class="rec__more" aria-hidden="true">
-                      <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-more" />
+                      </svg>
                     </span>
-                  </button>
+                  </a>
                 </li>
               </ul>
 
               <footer class="card__foot card__foot--stack">
-                <button type="button" class="btn btn--accent btn--block" data-action="upload" data-modal-target="dock">
-                  <svg class="icon" aria-hidden="true"><use href="#i-upload" /></svg>
+                <button
+                  type="button"
+                  class="btn btn--accent btn--block"
+                  data-action="upload"
+                  data-modal-target="dock"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-upload" />
+                  </svg>
                   <span>Upload audio</span>
                 </button>
               </footer>
@@ -252,15 +379,19 @@
                    app.js so the states stay in one place when this is wired up. -->
               <div class="empty" data-queue>
                 <span class="empty__mark" aria-hidden="true">
-                  <svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-check" />
+                  </svg>
                 </span>
                 <p class="empty__title">Queue is clear</p>
-                <p class="empty__body">No recordings are waiting to be transcribed.</p>
+                <p class="empty__body">
+                  No recordings are waiting to be transcribed.
+                </p>
               </div>
 
               <footer class="card__foot">
                 <span class="mono card__timecode">Last finished 2:14 PM</span>
-                <button type="button" class="btn btn--ghost btn--sm" data-action="history">History</button>
+                <a href="/recordings" class="btn btn--ghost btn--sm" data-action="history" data-route>History</a>
               </footer>
             </article>
 
@@ -275,14 +406,26 @@
                   <span class="option__name">Transcribe while recording</span>
                   <span class="option__sub mono">Uses your connection</span>
                 </span>
-                <button type="button" class="switch" role="switch" aria-checked="true" aria-label="Transcribe while recording">
+                <button
+                  type="button"
+                  class="switch"
+                  role="switch"
+                  aria-checked="true"
+                  aria-label="Transcribe while recording"
+                >
                   <span class="switch__dot" aria-hidden="true"></span>
                 </button>
               </div>
 
               <footer class="card__foot card__foot--stack">
-                <button type="button" class="btn btn--solid btn--block" data-action="record">
-                  <svg class="icon" aria-hidden="true"><use href="#i-mic" /></svg>
+                <button
+                  type="button"
+                  class="btn btn--solid btn--block"
+                  data-action="record"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-mic" />
+                  </svg>
                   <span>Start recording</span>
                 </button>
               </footer>
@@ -292,22 +435,39 @@
             <article class="card card--summary">
               <header class="card__head card__head--tight">
                 <h2 class="card__title card__title--sm">Latest summary</h2>
-                <button type="button" class="icon-btn icon-btn--sm" data-action="more" aria-label="Summary options">
-                  <svg class="icon" aria-hidden="true"><use href="#i-more" /></svg>
+                <button
+                  type="button"
+                  class="icon-btn icon-btn--sm"
+                  data-action="more"
+                  aria-label="Summary options"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-more" />
+                  </svg>
                 </button>
               </header>
 
               <div class="summary">
-                <p class="summary__source mono">Sunday Service — Morning Sermon</p>
+                <p class="summary__source mono">
+                  Sunday Service — Morning Sermon
+                </p>
                 <p class="summary__teaser">
-                  The sermon explores the importance of slowing down while reading scripture and considering the context behind familiar passages.
+                  The sermon explores the importance of slowing down while
+                  reading scripture and considering the context behind familiar
+                  passages.
                 </p>
               </div>
 
               <footer class="card__foot">
-                <button type="button" class="btn btn--ghost btn--sm" data-action="view-summary">
+                <button
+                  type="button"
+                  class="btn btn--ghost btn--sm"
+                  data-action="view-summary"
+                >
                   <span>View summary</span>
-                  <svg class="icon" aria-hidden="true"><use href="#i-next" /></svg>
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-next" />
+                  </svg>
                 </button>
               </footer>
             </article>
@@ -315,23 +475,28 @@
         </section>
 
         <!-- ============ TRANSCRIPTS (structure only) ============ -->
-        <section id="transcripts" class="page" aria-label="Transcripts" hidden>
-          <h1 class="page__title">Transcripts</h1>
+        <section id="recordings" class="page" aria-label="Transcripts" hidden>
+          <h1 class="page__title">Recordings</h1>
           <article class="card card--full">
             <div class="empty">
               <span class="empty__mark" aria-hidden="true">
-                <svg class="icon" aria-hidden="true"><use href="#i-transcripts" /></svg>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-mic" />
+                </svg>
               </span>
               <p class="empty__title">Transcript library</p>
-              <p class="empty__body">The full list, search and filters land here.</p>
+              <p class="empty__body">
+                The full list, search and filters land here.
+              </p>
             </div>
           </article>
         </section>
 
-        <!-- ============ EDITOR (structure only) ============ -->
         <section id="editor" class="page" aria-label="Editor" hidden>
           <h1 class="page__title">Editor</h1>
-          <article class="card card--full">
+
+          <!-- Default: shown when a transcript is actually loaded. -->
+          <article class="card card--full editor__content">
             <div class="empty">
               <span class="empty__mark" aria-hidden="true">
                 <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
@@ -340,8 +505,36 @@
               <p class="empty__body">Audio, speaker labels and editable text go here.</p>
             </div>
           </article>
-        </section>
 
+          <!-- /editor with no id, and nothing was previously opened. -->
+          <article class="card card--full editor__empty">
+            <div class="empty">
+              <span class="empty__mark" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-transcripts" /></svg>
+              </span>
+              <p class="empty__title">No recording open</p>
+              <p class="empty__body">Pick a recording from Recordings to start editing.</p>
+            </div>
+          </article>
+
+          <!-- /editor/:id, fetch in flight. -->
+          <article class="card card--full editor__loading">
+            <div class="empty">
+              <p class="empty__title">Loading…</p>
+            </div>
+          </article>
+
+          <!-- /editor/:id, but the fetch came back empty. -->
+          <article class="card card--full editor__not-found">
+            <div class="empty">
+              <span class="empty__mark" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+              </span>
+              <p class="empty__title">Couldn't load this recording</p>
+              <p class="empty__body">It may have been deleted, or the link is wrong.</p>
+            </div>
+          </article>
+        </section>
 
         <!-- ============ SETTINGS ============ -->
         <section id="settings" class="page" aria-label="Editor" hidden>
@@ -349,31 +542,66 @@
           <article class="card card--full">
             <div class="empty">
               <span class="empty__mark" aria-hidden="true">
-                <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-play" />
+                </svg>
               </span>
               <p class="empty__title">Transcript and Account prferences</p>
-              <p class="empty__body">Account toggles, and saved prefrences goo here.</p>
+              <p class="empty__body">
+                Account toggles, and saved prefrences goo here.
+              </p>
             </div>
           </article>
+        </section>
+
+        <section id="notfound" class="page" aria-label="Page not found" hidden>
+            <div class="empty">
+              <img src="/jpegs/404.svg" alt="404"  width="180" height="80" />
+              <p class="empty__title">Page not found</p>
+              <p class="empty__body">The page or link you followed does not exist.</p>
+              <a href="/" class="btn btn--solid" data-route>Go Back home</a>
+            </div>
         </section>
       </main>
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    
-    <div id="dock" class="dock" role="dialog" aria-modal="true" aria-labelledby="dock-title" hidden>
+
+    <div
+      id="dock"
+      class="dock"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dock-title"
+      hidden
+    >
       <article class="dock__modal">
         <header class="dock__head">
           <h2 id="dock-title" class="">Upload audio</h2>
-          <button type="button" class="icon-btn icon-btn--sm dock__close" aria-label="Cancel upload">
+          <button
+            type="button"
+            class="icon-btn icon-btn--sm dock__close"
+            aria-label="Cancel upload"
+          >
             <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
           </button>
         </header>
 
         <section class="dock__body">
-          <input class="sr-only" type="file" id="audio-upload" name="audio-upload" accept="audio/*" />
+          <input
+            class="sr-only"
+            type="file"
+            id="audio-upload"
+            name="audio-upload"
+            accept="audio/*"
+          />
           <label class="dock__dropzone" for="audio-upload">
-            <img src="/jpegs/folder-open.svg" alt="Open file" width="80px" height="80px">
+            <img
+              src="/jpegs/folder-open.svg"
+              alt="Open file"
+              width="80px"
+              height="80px"
+            />
             <span class="dock__copy">
               <span class="dock__title">Pick audio file</span>
               <span class="dock__meta">Min 2MB · Max 500MB</span>
@@ -382,16 +610,29 @@
         </section>
 
         <footer class="dock__foot">
-          <button type="button" class="btn btn--solid btn--block">Upload</button>
+          <button type="button" class="btn btn--solid btn--block">
+            Upload
+          </button>
         </footer>
       </article>
     </div>
 
-    <div id="export" class="dock" role="dialog" aria-modal="true" aria-labelledby="export-title" hidden>
+    <div
+      id="export"
+      class="dock"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="export-title"
+      hidden
+    >
       <article class="dock__modal dock__modal--export">
         <header class="dock__head">
           <h2 id="export-title">Export File</h2>
-          <button type="button" class="icon-btn icon-btn--sm dock__close" aria-label="Cancel export">
+          <button
+            type="button"
+            class="icon-btn icon-btn--sm dock__close"
+            aria-label="Cancel export"
+          >
             <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
           </button>
         </header>
@@ -399,42 +640,71 @@
         <section class="dock__body export-modal">
           <p class="export-modal__label">Select format</p>
 
-          <div class="export-modal__options" role="radiogroup" aria-label="Select export format">
+          <div
+            class="export-modal__options"
+            role="radiogroup"
+            aria-label="Select export format"
+          >
             <label class="export-option">
-              <input class="sr-only" type="radio" name="export-format" value="pdf" checked />
+              <input
+                class="sr-only"
+                type="radio"
+                name="export-format"
+                value="pdf"
+                checked
+              />
               <span class="export-option__badge">New</span>
               <span class="export-option__icon" aria-hidden="true">
                 <svg class="icon"><use href="#i-copy" /></svg>
               </span>
               <span class="export-option__copy">
                 <span class="export-option__title">Export to PDF</span>
-                <span class="export-option__meta">Download as a stylized document</span>
+                <span class="export-option__meta"
+                  >Download as a stylized document</span
+                >
               </span>
               <span class="export-option__radio" aria-hidden="true"></span>
             </label>
 
             <label class="export-option">
-              <input class="sr-only" type="radio" name="export-format" value="docx" />
+              <input
+                class="sr-only"
+                type="radio"
+                name="export-format"
+                value="docx"
+              />
               <span class="export-option__badge">New</span>
               <span class="export-option__icon" aria-hidden="true">
                 <svg class="icon"><use href="#i-file" /></svg>
               </span>
               <span class="export-option__copy">
                 <span class="export-option__title">Export as DOCX</span>
-                <span class="export-option__meta">Download as a doc file from your browser</span>
+                <span class="export-option__meta"
+                  >Download as a doc file from your browser</span
+                >
               </span>
               <span class="export-option__radio" aria-hidden="true"></span>
             </label>
 
             <label class="export-option is-disabled">
-              <input class="sr-only" type="radio" name="export-format" value="gmail" disabled />
-              <span class="export-option__badge export-option__badge--muted">Soon</span>
+              <input
+                class="sr-only"
+                type="radio"
+                name="export-format"
+                value="gmail"
+                disabled
+              />
+              <span class="export-option__badge export-option__badge--muted"
+                >Soon</span
+              >
               <span class="export-option__icon" aria-hidden="true">
                 <svg class="icon"><use href="#i-mail" /></svg>
               </span>
               <span class="export-option__copy">
                 <span class="export-option__title">Send to Gmail</span>
-                <span class="export-option__meta">Directly email to an account</span>
+                <span class="export-option__meta"
+                  >Directly email to an account</span
+                >
               </span>
               <span class="export-option__radio" aria-hidden="true"></span>
             </label>
@@ -446,10 +716,15 @@
             <svg class="icon" aria-hidden="true"><use href="#i-export" /></svg>
             <span>Download</span>
           </button>
-          <button type="button" class="btn btn--block btn--ghost export-modal__cancel" data-modal-close>Cancel</button>
+          <button
+            type="button"
+            class="btn btn--block btn--ghost export-modal__cancel"
+            data-modal-close
+          >
+            Cancel
+          </button>
         </footer>
       </article>
     </div>
-    
   </body>
 </html>
