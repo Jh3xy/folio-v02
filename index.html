@@ -104,6 +104,11 @@
         <path d="M6 6v12l9-6z" />
         <path d="M18 6v12" />
       </symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24">
+        <path d="M12 3 21 19H3z" />
+        <path d="M12 10v4" />
+        <path d="M12 17h.01" />
+      </symbol>
     </svg>
 
     <div id="app">
@@ -311,7 +316,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/editor/3" class="rec__item" data-route data-id="2" data-action="open">
+                  <a href="/editor/3" class="rec__item" data-route data-id="3" data-action="open">
                     <div class="flex items-center gap-3">
                       <span class="rec__badge" aria-hidden="true">
                         <svg class="icon" aria-hidden="true">
@@ -331,8 +336,7 @@
                   </a>
                 </li>
                 <li>
-                  <button type="button" class="rec__item" data-action="open">
-                  <a href="/editor/4" class="rec__item" data-route data-id="2">
+                  <a href="/editor/4" class="rec__item" data-route data-id="4">
                     <div class="flex items-center gap-3">
                       <span class="rec__badge" aria-hidden="true">
                         <svg class="icon" aria-hidden="true">
@@ -594,8 +598,9 @@
             id="audio-upload"
             name="audio-upload"
             accept="audio/*"
+            multiple
           />
-          <label class="dock__dropzone" for="audio-upload">
+          <label class="dock__dropzone" for="audio-upload" data-dropzone>
             <img
               src="/jpegs/folder-open.svg"
               alt="Open file"
@@ -603,16 +608,26 @@
               height="80px"
             />
             <span class="dock__copy">
-              <span class="dock__title">Pick audio file</span>
+              <span class="dock__title">Pick audio files</span>
               <span class="dock__meta">Min 2MB · Max 500MB</span>
             </span>
           </label>
-        </section>
 
+          <ul class="file-list" data-file-list hidden></ul>
+
+        </section>
+        
         <footer class="dock__foot">
-          <button type="button" class="btn btn--solid btn--block">
-            Upload
+          <button type="button" class="btn btn--quiet btn--sm" data-add-more hidden>
+            <svg class="icon" aria-hidden="true"><use href="#i-plus" /></svg>
+            <span>Add more</span>
           </button>
+          <button type="button" class="btn btn--solid btn--block" data-transcribe disabled>
+            Transcribe
+          </button>
+          <!-- <button type="button" class="btn btn--solid btn--block">
+            Upload
+          </button> -->
         </footer>
       </article>
     </div>

@@ -913,6 +913,7 @@ body:has(.dock:not([hidden])) #main {
   gap: var(--space-4);
   min-height: 14rem;
   padding: var(--space-6);
+  margin-bottom: var(--space-2);
   border: var(--border-thin) dashed var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-info-soft);
@@ -926,6 +927,10 @@ body:has(.dock:not([hidden])) #main {
 .dock__dropzone:hover {
   border-color: var(--color-border-strong);
   background: var(--color-accent-soft);
+}
+
+.dock__dropzone[hidden] {
+  display: none;
 }
 
 .dock__folder {
@@ -987,6 +992,7 @@ body:has(.dock:not([hidden])) #main {
 
 .dock__foot {
   display: grid;
+  gap: var(--space-2);
   padding-top: var(--space-2);
 }
 
@@ -998,6 +1004,133 @@ body:has(.dock:not([hidden])) #main {
   font-size: var(--fs-xl);
   font-weight: var(--fw-semibold);
   line-height: var(--lh-snug);
+}
+
+/* ========== FILE ROWS (upload dock) ========== */
+
+.file-list {
+  display: grid;
+  gap: var(--space-2);
+  max-height: 18rem;
+  overflow-y: auto;
+}
+
+.file-row {
+  display: grid;
+  grid-template-columns: var(--control-h-md) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* .file-row.is-failed {
+  background: var(--color-error-soft);
+  border-color: transparent;
+} */
+
+.file-row__icon {
+  display: grid;
+  place-items: center;
+  width: var(--control-h-md);
+  height: var(--control-h-md);
+  border-radius: var(--radius-md);
+  background: var(--color-info-soft);
+  color: var(--color-text-muted);
+}
+
+.file-row__icon--accent {
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.file-row__icon--error {
+  background: var(--color-error-soft);
+  color: var(--color-error);
+}
+
+.file-row__text {
+  display: grid;
+  min-width: 0;
+  gap: 0.125rem;
+}
+
+.file-row__name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-row__meta {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.file-row.is-failed .file-row__meta {
+  color: var(--color-error);
+}
+
+.file-row__progress {
+  display: grid;
+  gap: var(--space-1);
+  width: 6rem;
+  justify-items: end;
+}
+
+.file-row__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-self: end;
+}
+
+.file-row__bar {
+  width: 100%;
+  height: 0.25rem;
+  border-radius: var(--radius-full);
+  background: var(--color-divider);
+  overflow: hidden;
+}
+
+.file-row__bar span {
+  display: block;
+  width: var(--progress, 0%);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-action);
+  transition: width var(--duration-fast) var(--ease-standard);
+}
+
+.file-row__pct {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.file-row__badge {
+  display: grid;
+  place-items: center;
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  border-radius: var(--radius-full);
+  background: var(--color-success-soft);
+  color: var(--color-text);
+}
+.file-row__badge .icon {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+[data-dropzone].is-dragover {
+  border-color: var(--color-border-strong);
+  background: var(--color-accent-soft);
+}
+
+[data-add-more][disabled] {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
 }
 
 .export-modal {

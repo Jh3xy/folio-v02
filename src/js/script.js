@@ -1,3 +1,5 @@
+
+
 /* FOLIO — main js module */
 
 import "../style/font.css";
@@ -5,14 +7,19 @@ import "../style/variables.css";
 import "../style/utils.css";
 import "../style/style.css";
 
+import { toast } from "./modules/utils.js";
+import { loadEditor, } from "./modules/transcribe.js";
+import "./modules/upload.js";
+
 console.log("[VITE]: Status - Running");
 
 const app = document.getElementById("app");
 const nav = document.getElementById("nav");
 const toggle = document.getElementById("nav-toggle");
-const toastEl = document.getElementById("toast");
 
 const MOBILE = window.matchMedia("(max-width: 48rem)");
+
+
 
 /* ---------- nav width ---------- */
 
@@ -65,6 +72,8 @@ function parseRoute(pathname) {
 
   return { name: "notfound", params: {} }; // unknown path -> not found
 }
+
+
 /**
  * The single render path. In-app clicks, popstate, and the initial page
  * load all end up calling this with the same shape of object — no branching
@@ -109,48 +118,6 @@ window.addEventListener("popstate", () => {
   renderRoute(parseRoute(location.pathname)); // no pushState — URL already moved
 });
 
-/* ---------- Editor loading ---------- */
-
-function getLastOpenedId() {
-  return null; // TODO: read from localStorage once something writes to it
-}
-
-// Stub — swap this for a real Supabase fetch once DB wiring lands.
-// Resolves to the transcript row, or null for "not found".
-function loadTranscript(id) {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(null), 600);
-  });
-}
-
-let editorRequestId = 0; // guards a slow fetch from overwriting a newer one
-
-async function loadEditor(id) {
-  const editorEl = document.getElementById("editor");
-  const resolvedId = id ?? getLastOpenedId();
-
-  editorEl.classList.remove("is-loading", "is-empty", "is-not-found");
-
-  if (!resolvedId) {
-    editorEl.classList.add("is-empty");
-    return;
-  }
-
-  const requestId = ++editorRequestId;
-  editorEl.classList.add("is-loading");
-
-  const data = await loadTranscript(resolvedId);
-  if (requestId !== editorRequestId) return; // a newer navigation beat this one back
-
-  editorEl.classList.remove("is-loading");
-
-  if (!data) {
-    editorEl.classList.add("is-not-found");
-    return;
-  }
-
-  // TODO: render(data) once there's real content to render
-}
 
 /* ---------- toggles ---------- */
 
@@ -163,16 +130,7 @@ document.querySelectorAll(".switch").forEach((sw) => {
   });
 });
 
-/* ---------- placeholder actions ---------- */
 
-let toastTimer;
-
-function toast(message) {
-  toastEl.textContent = message;
-  toastEl.classList.add("is-visible");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 22200);
-}
 
 // Swap these for real handlers one at a time as the features get built.
 const actions = {
