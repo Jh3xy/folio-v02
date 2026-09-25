@@ -167,13 +167,28 @@
             <span class="nav__label">New</span>
           </button>
 
-          <button type="button" class="nav__account" aria-label="Account">
-            <span class="avatar" aria-hidden="true">J</span>
-            <span class="nav__label nav__account-text">
-              <span class="nav__account-name">Jhey</span>
-              <span class="nav__account-sub">Account</span>
-            </span>
-          </button>
+          <div class="nav__account-wrap">
+            <button
+              type="button"
+              class="nav__account"
+              data-action="account"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span class="avatar" aria-hidden="true" data-account-avatar>?</span>
+              <span class="nav__label nav__account-text">
+                <span class="nav__account-name" data-account-name>Sign in</span>
+                <span class="nav__account-sub" data-account-sub>Guest</span>
+              </span>
+            </button>
+
+            <div class="account-menu" data-account-menu>
+              <p class="account-menu__email" data-account-menu-email></p>
+              <button type="button" class="btn btn--quiet btn--sm btn--block" data-action="logout">
+                Log out
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -737,6 +752,73 @@
             data-modal-close
           >
             Cancel
+          </button>
+        </footer>
+      </article>
+    </div>
+
+    <!-- Auth Modal -->
+         <div
+      id="auth"
+      class="dock"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="auth-title"
+      hidden
+    >
+      <article class="dock__modal">
+        <div class="dock__head-wrap">
+          <header class="dock__head">
+            <h2 id="auth-title" data-auth-title>Log in</h2>
+            <button
+              type="button"
+              class="icon-btn icon-btn--sm dock__close"
+              aria-label="Close"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+            </button>
+          </header>
+          <span class="dock__head-wrap-desc">
+            Sign In/Up to account to upload and transcribe audio
+          </span>
+        </div>
+
+        <section class="dock__body">
+          <form class="auth-form" data-auth-form>
+            <div class="auth-form__field">
+              <label class="auth-form__label" for="auth-email">Email</label>
+              <input
+                class="auth-form__input"
+                type="email"
+                id="auth-email"
+                name="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="auth-form__field">
+              <label class="auth-form__label" for="auth-password">Password</label>
+              <input
+                class="auth-form__input"
+                type="password"
+                id="auth-password"
+                name="password"
+                autocomplete="current-password"
+                minlength="6"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn--solid btn--block" data-auth-submit>
+              <span data-auth-submit-label>Log in</span>
+            </button>
+          </form>
+        </section>
+
+        <footer class="dock__foot">
+          <button type="button" class="btn btn--sm">
+            Need an account? <strong data-auth-toggle >Sign up</strong>
           </button>
         </footer>
       </article>

@@ -13,6 +13,12 @@ const MAX_FILES_PER_BATCH = 10;          // placeholder — exact value not deci
 let fileIdCounter = 0;
 const stagedFiles = new Map(); // id -> { id, name, size, status, progress, reason, timer }
 
+function getFileSizeError(size) {
+  if (size < MIN_FILE_SIZE) return "File too small";
+  if (size > MAX_FILE_SIZE) return "File too large";
+  return null;
+}
+
 
 export function renderFileRow(entry) {
   const { id, name, size, status, progress, reason } = entry;
@@ -102,12 +108,9 @@ export function addFiles(fileList) {
     if (!file.type.startsWith("audio/")) {
       entry.status = "failed";
       entry.reason = "Not an audio file";
-    } else if (file.size < MIN_FILE_SIZE) {
+    } else if (getFileSizeError(file.size)) {
       entry.status = "failed";
-      entry.reason = "File too small";
-    } else if (file.size > MAX_FILE_SIZE) {
-      entry.status = "failed";
-      entry.reason = "File too large";
+      entry.reason = getFileSizeError(file.size);
     } else {
       startUpload(entry);
     }
@@ -131,6 +134,14 @@ export function cancelUpload(id) {
 export function retryUpload(id) {
   const entry = stagedFiles.get(id);
   if (!entry) return;
+  const sizeError = getFileSizeError(entry.size);
+  if (sizeError) {
+    entry.status = "failed";
+    entry.reason = sizeError;
+    renderFileList();
+    updateTranscribeState();
+    return;
+  }
   startUpload(entry);
   renderFileList();
 }
@@ -205,6 +216,15 @@ document.querySelector("[data-transcribe]")?.addEventListener("click", () => {
 const UPLOAD_TICK_MS = 200;
 
 export function startUpload(entry) {
+  const sizeError = getFileSizeError(entry.size);
+  if (sizeError) {
+    entry.status = "failed";
+    entry.reason = sizeError;
+    renderFileList();
+    updateTranscribeState();
+    return;
+  }
+
   entry.progress = 0;
   entry.status = "uploading";
 

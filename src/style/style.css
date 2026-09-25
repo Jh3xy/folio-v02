@@ -252,11 +252,129 @@ body:has(.dock:not([hidden])) #main {
 .nav__account-name {
   font-size: var(--fs-md);
   font-weight: var(--fw-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .nav__account-sub {
   font-family: var(--ff-mono);
   font-size: var(--fs-xs);
   opacity: var(--opacity-subtle);
+}
+
+
+/* ========= ACCOUNT MENU ========= */
+
+/* display:contents keeps this wrapper out of the flex layout entirely —
+   .nav__account renders exactly as it did before, this just gives us a
+   real DOM node to anchor the popover markup to. */
+.nav__account-wrap {
+  display: contents;
+}
+
+.account-menu {
+  position: fixed;
+  z-index: 20;
+  display: grid;
+  gap: var(--space-2);
+  width: 14rem;
+  padding: var(--space-3);
+  border: var(--border-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.25rem);
+  pointer-events: none;
+  transition:
+    opacity var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard),
+    visibility var(--duration-fast);
+}
+
+.account-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+.account-menu__email {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========= BUSY / LOADING BUTTON STATE ========= */
+
+@keyframes btn-spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.btn.is-busy {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn.is-busy .icon {
+  opacity: 0;
+}
+
+.btn.is-busy::after {
+  content: "";
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  transform: translateY(-50%);
+  border: 2px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-top-color: currentColor;
+  border-radius: var(--radius-full);
+  animation: btn-spin 0.6s linear infinite;
+}
+
+/* ========= AUTH FORM ========= */
+
+.auth-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.auth-form__field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.auth-form__label {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.auth-form__input {
+  height: var(--control-h-md);
+  padding-inline: var(--space-3);
+  border: var(--border-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--ff-sans);
+  font-size: var(--fs-md);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.auth-form__input:focus {
+  outline: none;
+  border-color: var(--color-border-strong);
 }
 
 /* ========== GRID ======== */
@@ -901,6 +1019,13 @@ body:has(.dock:not([hidden])) #main {
   justify-content: space-between;
 }
 
+.dock__head-wrap span {
+  color: var(--color-ink, #1f1d1a);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  margin-top: var(--space-3);
+}
+
 .dock__body {
   display: grid;
 }
@@ -994,6 +1119,10 @@ body:has(.dock:not([hidden])) #main {
   display: grid;
   gap: var(--space-2);
   padding-top: var(--space-2);
+}
+
+.dock__foot strong {
+  text-decoration: underline;
 }
 
 .dock__modal--export {
@@ -1311,7 +1440,8 @@ body:has(.dock:not([hidden])) #main {
 @media (max-width: 48rem) {
   .nav__head,
   .nav__divider,
-  .nav__account {
+  .nav__account,
+  .account-menu {
     display: none;
   }
 
