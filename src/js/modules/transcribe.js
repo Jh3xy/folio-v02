@@ -3,7 +3,7 @@
 let editorRequestId = 0; // guards a slow fetch from overwriting a newer one
 
 export function getLastOpenedId() {
-  return null; // TODO: read from localStorage once something writes to it
+  return null; // TODO: read and return from localStorage once something writes to it
 }
 
 /**

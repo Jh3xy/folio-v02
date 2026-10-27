@@ -1,12 +1,16 @@
 
+/**
+ * FOLIO — main js module
+ */
 
-/* FOLIO — main js module */
+// Stylesheets 
 
 import "../style/font.css";
 import "../style/variables.css";
 import "../style/utils.css";
 import "../style/style.css";
 
+// JS modules
 import { toast } from "./modules/utils.js";
 import { loadEditor } from "./modules/transcribe.js";
 import "./modules/upload.js";
@@ -19,17 +23,17 @@ import {
   getAuthErrorMessage,
 } from "./modules/auth.js";
 
-console.log("[VITE]: Status - Running");
 
+
+console.log("[VITE]: Status - Running");
 const app = document.getElementById("app");
 const nav = document.getElementById("nav");
 const toggle = document.getElementById("nav-toggle");
-
 const MOBILE = window.matchMedia("(max-width: 48rem)");
 
 
 
-/* ---------- nav width ---------- */
+/* ---------- Side Nav Width ---------- */
 
 function setNavOpen(open) {
   app.classList.toggle("is-nav-open", open);
@@ -45,13 +49,17 @@ toggle.addEventListener("click", () => {
   closeAccountMenuNow();
 });
 
-// Below the mobile breakpoint the rail becomes a bottom bar, so the open
-// state is meaningless — drop it rather than leave a stale class behind.
+/**
+ * Below the mobile breakpoint the rail becomes a bottom bar
+ * the open state is meaningless and is dropped rather than leave a stale class behind.
+ */
+
 MOBILE.addEventListener("change", (e) => {
   if (e.matches) setNavOpen(false);
 });
 
-/* ---------- Routing ---------- */
+
+/* ---------- App Routing ---------- */
 
 const ROUTES = [
   { name: "home", pattern: [] },
@@ -62,7 +70,8 @@ const ROUTES = [
 ];
 
 function parseRoute(pathname) {
-  const segments = pathname.split("/").filter(Boolean); // '/editor/42' -> ['editor', '42']
+  const segments = pathname.split("/").filter(Boolean);
+  // '/editor/42' -> ['editor', '42']
 
   for (const route of ROUTES) {
     if (route.pattern.length !== segments.length) continue;
@@ -85,8 +94,8 @@ function parseRoute(pathname) {
 
 /**
  * The single render path. In-app clicks, popstate, and the initial page
- * load all end up calling this with the same shape of object — no branching
- * between "user clicked" vs "user hit refresh".
+ * load all call this with the same shape of object — no branching
+ * between user clicks and refresh.
  * @param {*} route
  * @returns
  */

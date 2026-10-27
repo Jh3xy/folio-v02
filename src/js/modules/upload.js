@@ -6,9 +6,9 @@
 
 import { formatFileSize, toast } from "./utils.js";
 
-const MIN_FILE_SIZE = 2 * 1024 * 1024;   // 2 MB — matches the dropzone copy; confirm against AssemblyAI's real limits later
-const MAX_FILE_SIZE = 500 * 1024 * 1024; // 500 MB
-const MAX_FILES_PER_BATCH = 10;          // placeholder — exact value not decided per the doc
+const MIN_FILE_SIZE = 2 * 1024 * 1024; // 2 MB confirm against AssemblyAI's upload spec limits 
+const MAX_FILE_SIZE = 500 * 1024 * 1024; // 500 MB - maximum audio upload size
+const MAX_FILES_PER_BATCH = 10; // placeholder — exact value not decided per the doc
 
 let fileIdCounter = 0;
 const stagedFiles = new Map(); // id -> { id, name, size, status, progress, reason, timer }
